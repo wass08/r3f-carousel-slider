@@ -60,7 +60,7 @@ export const ImageCarousel = ({
   const handleWheel = (event) => {
     event.preventDefault();
     // Apply wheel sensitivity properly scaled
-    const wheelForce = event.deltaY * wheelSensitivity * 0.01;
+    const wheelForce = event.deltaY * wheelSensitivity * 0.00001;
     velocityRef.current += wheelForce;
     isSnapping.current = false; // Stop snapping when user interacts
   };
@@ -77,7 +77,7 @@ export const ImageCarousel = ({
 
     const deltaX = event.clientX - lastMouseX.current;
     // Apply drag sensitivity properly scaled
-    const dragForce = deltaX * dragSensitivity * 0.01;
+    const dragForce = deltaX * dragSensitivity * 0.00001;
     velocityRef.current += dragForce;
     lastMouseX.current = event.clientX;
     isSnapping.current = false; // Stop snapping when user drags
@@ -99,7 +99,7 @@ export const ImageCarousel = ({
 
     const deltaX = event.touches[0].clientX - lastMouseX.current;
     // Apply drag sensitivity properly scaled
-    const dragForce = deltaX * dragSensitivity * 0.01;
+    const dragForce = deltaX * dragSensitivity * 0.00001;
     velocityRef.current += dragForce;
     lastMouseX.current = event.touches[0].clientX;
   };

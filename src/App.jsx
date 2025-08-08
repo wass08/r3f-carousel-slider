@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "./components/Experience";
+import { OverlayComponent } from "./components/OverlayComponent";
 
 import { useState } from "react";
 import { WebGPURenderer } from "three/webgpu";
@@ -7,7 +8,8 @@ import { WebGPURenderer } from "three/webgpu";
 function App() {
   const [frameloop, setFrameloop] = useState("never");
   return (
-    <Canvas
+    <>
+      <Canvas
       shadows
       camera={{ position: [0, 0, 12], fov: 45 }}
       frameloop={frameloop}
@@ -26,9 +28,11 @@ function App() {
         return renderer;
       }}
     >
-      <color attach="background" args={["#333"]} />
-      <Experience />
-    </Canvas>
+        <color attach="background" args={["#333"]} />
+        <Experience />
+      </Canvas>
+      <OverlayComponent />
+    </>
   );
 }
 

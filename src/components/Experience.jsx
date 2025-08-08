@@ -1,8 +1,12 @@
+import { useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import { Suspense } from "react";
+import * as THREE from "three";
 import { ImageCarousel } from "./ImageCarousel";
 
 export const Experience = () => {
+  const { scene } = useThree();
+
   const sampleImages = [
     "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=1000&fit=crop",
     "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&h=1000&fit=crop",
@@ -26,6 +30,7 @@ export const Experience = () => {
     // Visual settings
     cornerRadius: { value: 0.05, min: 0, max: 0.5, step: 0.01 },
     bendAmount: { value: 0.1, min: 0, max: 2, step: 0.05 },
+    backgroundColor: "#e2e2e2",
 
     // Opacity settings
     centerOpacity: { value: 1.0, min: 0.1, max: 1.0, step: 0.05 },
@@ -33,11 +38,14 @@ export const Experience = () => {
     farOpacity: { value: 0.8, min: 0.0, max: 1.0, step: 0.05 },
 
     // Physics settings
-    friction: { value: 95, min: 80, max: 99, step: 1 },
-    wheelSensitivity: { value: 20, min: 1, max: 100, step: 1 },
-    dragSensitivity: { value: 50, min: 1, max: 100, step: 1 },
+    friction: { value: 90, min: 80, max: 99, step: 1 },
+    wheelSensitivity: { value: 100, min: 1, max: 500, step: 5 },
+    dragSensitivity: { value: 300, min: 1, max: 1000, step: 10 },
     enableSnapping: true,
   });
+
+  // Update scene background color
+  scene.background = new THREE.Color(controls.backgroundColor);
 
   return (
     <>
